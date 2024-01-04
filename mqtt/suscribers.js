@@ -1,13 +1,13 @@
 const fs = require('fs');
 const Record = require('../models/record');
 
-const listenMessage = async (client) => {
+const listenMessage = async (client, io) => {
     client.on('message', async (devID, message) => {
         console.log("* Received uplink from*** ", devID);
         const payload = JSON.parse(message).uplink_message; 
 
         if(payload?.decoded_payload) {
-            console.log(payload);
+            console.log('update data');
 
             const dataVacas = JSON.stringify(payload.decoded_payload, null, 2);
             // fs.appendFileSync('measure.txt',  dataVacas + '\n');
@@ -22,6 +22,8 @@ const listenMessage = async (client) => {
 
             });
             await record.save();
+
+            io.emit('dataVacas', payload.decoded_payload);
         }
     });
 }
