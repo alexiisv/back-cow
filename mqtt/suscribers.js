@@ -8,9 +8,6 @@ const listenMessage = async (client, io) => {
 
         if(payload?.decoded_payload) {
             console.log('update data');
-<<<<<<< HEAD
-            // console.log(payload);
-=======
             
             const dateUTC = new Date(payload.received_at)
             dateUTC.setHours(dateUTC.getHours() - 5)
@@ -18,7 +15,6 @@ const listenMessage = async (client, io) => {
             payload.received_at = dateUTC5
             
             console.log(payload);
->>>>>>> 7b535e7d6c84c2e3319017f35874832972eac082
 
             const dataVacas = JSON.stringify(payload.decoded_payload, null, 2);
             // fs.appendFileSync('measure.txt',  dataVacas + '\n');
