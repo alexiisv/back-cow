@@ -6,6 +6,7 @@ require('dotenv').config();
 
 const { ttsConnection, listenMessage } = require('./mqtt');
 const { dbConnection } = require('./database/config');
+const { recordsGet } = require('./controllers/cows.controllers');
 
 const PORT = process.env.PORT || 3000
 
@@ -30,6 +31,12 @@ app.get('/hi', (req, res) => {
     msg: 'Hola mundo'
   })
 });
+
+app.get('/cows', recordsGet)
+
+app.use(cors())
+
+
 
 io.on('connection', (socket) => {
   console.log('a user has connected!')

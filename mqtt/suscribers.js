@@ -8,6 +8,7 @@ const listenMessage = async (client, io) => {
 
         if(payload?.decoded_payload) {
             console.log('update data');
+            // console.log(payload);
 
             const dataVacas = JSON.stringify(payload.decoded_payload, null, 2);
             // fs.appendFileSync('measure.txt',  dataVacas + '\n');
@@ -19,6 +20,11 @@ const listenMessage = async (client, io) => {
                 temp_scd: payload.decoded_payload.temp_scd,  
                 hum_scd: payload.decoded_payload.hum_scd,  
                 heart_valid: payload.decoded_payload.heart_valid,  
+                gyro: { 
+                    x: payload.decoded_payload.gyroX,
+                    y: payload.decoded_payload.gyroY,
+                    z: payload.decoded_payload.gyroZ,
+                }
 
             });
             await record.save();

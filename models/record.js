@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose');
 
 const RecordSchema = Schema({
     aid_Vaca: {
-        type: String,
+        type: string,
         required: [true, 'identifier is required'],
         unique: false,
     },
