@@ -1,2 +1,0 @@
-"use strict";(self["webpackChunk_05_rutas_ciclo"]=self["webpackChunk_05_rutas_ciclo"]||[]).push([[822],{5992:function(n,r,u){u.r(r),u.d(r,{default:function(){return i}});var t=u(3396);function c(n,r){return(0,t.wg)(),(0,t.iD)("h1",null," List Page")}var e=u(89);const a={},s=(0,e.Z)(a,[["render",c]]);var i=s}}]);
-//# sourceMappingURL=ListPage.e3c5338f.js.map
