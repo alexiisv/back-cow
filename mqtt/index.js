@@ -1,7 +1,7 @@
-const config = require('./config');
-const suscribers = require('./suscribers');
+const config = require('./config')
+const suscribers = require('./suscribers')
 
 module.exports = {
-    ...config,
-    ...suscribers,
+  ...config,
+  ...suscribers
 }
