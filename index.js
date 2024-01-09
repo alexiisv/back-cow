@@ -25,13 +25,6 @@ app.use(cors({
   }
 }))
 
-app.get('/hi', (req, res) => {
-  res.json({
-    ok: true,
-    msg: 'Hola mundo'
-  })
-})
-
 app.get('/cows', recordsGet)
 
 app.use(cors())

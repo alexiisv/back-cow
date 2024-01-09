@@ -8,11 +8,6 @@ const listenMessage = async (client, io) => {
     if (payload?.decoded_payload) {
       console.log('update data')
 
-      const dateUTC = new Date(payload.received_at)
-      dateUTC.setHours(dateUTC.getHours() - 5)
-      const dateUTC5 = dateUTC.toISOString()
-      payload.received_at = dateUTC5
-
       const data = {
         aid_Vaca: payload.decoded_payload.aid_Vaca,
         c02_scd: payload.decoded_payload.Co2_scd,
