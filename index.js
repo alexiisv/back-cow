@@ -25,9 +25,9 @@ app.use(cors({
   }
 }))
 
-app.get('/cows', recordsGet)
+app.use(express.static('public'))
 
-app.use(cors())
+app.get('/cows', recordsGet)
 
 io.on('connection', (socket) => {
   console.log('a user has connected!')
