@@ -1,2 +1,0 @@
-"use strict";(self["webpackChunk_05_rutas_ciclo"]=self["webpackChunk_05_rutas_ciclo"]||[]).push([[488],{597:function(n,u,r){r.r(u),r.d(u,{default:function(){return _}});var c=r(3396);const t=(0,c._)("h1",null,"No Page Found",-1),e=(0,c._)("h3",null,"404",-1);function l(n,u){return(0,c.wg)(),(0,c.iD)(c.HY,null,[t,e],64)}var a=r(89);const o={},s=(0,a.Z)(o,[["render",l]]);var _=s}}]);
-//# sourceMappingURL=NoPageFound.e0c3068c.js.map
