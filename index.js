@@ -1,5 +1,6 @@
 const { Server } = require('socket.io')
 const http = require('http')
+const path = require('path')
 const express = require('express')
 const cors = require('cors')
 require('dotenv').config()
@@ -25,9 +26,13 @@ app.use(cors({
   }
 }))
 
-app.use(express.static('public'))
+app.use(express.static(path.join(__dirname, 'public')))
 
-app.get('/cows', recordsGet)
+app.get('/api/cows', recordsGet)
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'))
+})
 
 io.on('connection', (socket) => {
   console.log('a user has connected!')
