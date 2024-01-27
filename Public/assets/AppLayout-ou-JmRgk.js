@@ -1,0 +1,1 @@
+import{j as e}from"./index-AKvhz_oP.js";function l({children:x}){return e.jsx("div",{className:"flex flex-col min-h-screen",children:e.jsx("main",{className:"flex-1 container max-w-6xl mx-auto flex flex-co",children:x})})}export{l as default};
