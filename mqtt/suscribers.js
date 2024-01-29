@@ -25,6 +25,7 @@ const listenMessage = async (client, io) => {
         activ: payload.decoded_payload.activ,
 
         temp_max: payload.decoded_payload.temp_max,
+        temp_max_corregida: payload.decoded_payload.temp_max_correc,
         temp_scd: payload.decoded_payload.temp_scd,
         temp_ambi: payload.decoded_payload.temp_ambi,
         temp_objet: payload.decoded_payload.temp_objet,
