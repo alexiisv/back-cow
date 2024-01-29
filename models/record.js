@@ -54,6 +54,11 @@ const RecordSchema = Schema({
     required: [true, 'identifier is required'],
     unique: false
   },
+  temp_max_corregida: {
+    type: Number,
+    required: [true, 'identifier is required'],
+    unique: false
+  },
 
   // Mlx
   temp_ambi: {
