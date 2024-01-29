@@ -189,6 +189,12 @@ const RecordSchema = Schema({
     unique: false
   },
 
+  sonido: {
+    type: Number,
+    required: [true, 'identifier is required'],
+    unique: false
+  },
+
   received_at: {
     type: String,
     required: [true, 'identifier is required'],

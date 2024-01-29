@@ -70,6 +70,8 @@ const listenMessage = async (client, io) => {
           z: payload.decoded_payload.oriZ
         },
 
+        sonido: payload.decoded_payload.sonido,
+
         received_at: payload.received_at
       }
 
