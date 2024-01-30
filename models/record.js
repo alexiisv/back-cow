@@ -123,7 +123,7 @@ const RecordSchema = Schema({
       unique: false
     }
   },
-  mag: {
+  acc: {
     x: {
       type: Number,
       required: [true, 'identifier is required'],

@@ -60,10 +60,10 @@ const listenMessage = async (client, io) => {
           y: payload.decoded_payload.gyroY,
           z: payload.decoded_payload.gyroZ
         },
-        mag: {
-          x: payload.decoded_payload.magX,
-          y: payload.decoded_payload.magY,
-          z: payload.decoded_payload.magZ
+        acc: {
+          x: payload.decoded_payload.accX,
+          y: payload.decoded_payload.accY,
+          z: payload.decoded_payload.accZ
         },
         ori: {
           x: payload.decoded_payload.oriX,
