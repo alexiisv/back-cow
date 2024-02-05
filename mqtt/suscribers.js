@@ -1,16 +1,7 @@
 const Record = require('../models/record')
 
-// Variable para almacenar el nombre de la colección actual
-let currentCollection;
-
-const createDailyCollection = () => {
-  const currentDate = new Date();
-  currentDate.setHours(currentDate.getHours() - 5);
-  currentCollection = `records_${currentDate.toISOString().split('T')[0]}`;
-};
-
 const listenMessage = async (client, io) => {
-  createDailyCollection();
+
   client.on('message', async (devID, message) => {
     console.log('* Received uplink from*** ', devID)
     const payload = JSON.parse(message).uplink_message
@@ -75,21 +66,12 @@ const listenMessage = async (client, io) => {
 
         received_at: payload.received_at
       }
-
-      // Verifica si la colección actual existe, si no, la crea
-      if (!currentCollection) {
-        createDailyCollection();
-      }
       
 
       // Guardar el registro en la colección correspondiente
-      const recordModel = new Record(data);
-      const collection = await recordModel.db.collection(currentCollection);
-      await collection.insertOne(data);
-
-      // const record = new Record(data)
-      // await record.save()
-      await recordModel.save()
+      const record1 = new Record(data)
+      await record1.save()
+     
 
       io.emit('dataVacas', data)
 
