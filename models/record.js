@@ -201,7 +201,7 @@ const RecordSchema = Schema({
   },
 
   received_at: {
-    type: String,
+    type: Date,
     required: [true, 'identifier is required'],
     unique: false
   }
