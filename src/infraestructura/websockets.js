@@ -3,7 +3,14 @@ import { Server } from 'socket.io'
 let io
 
 function configureWebSocket (server) {
-  io = new Server(server)
+  io = new Server(server, {
+    cors: {
+      origin: '*',
+      methods: ['GET', 'POST']
+    }
+  })
+
+  console.log('Socket.io inicializado')
 
   io.on('connection', (socket) => {
     console.log('Usuario conectado')
