@@ -1,6 +1,6 @@
-const { Schema, model } = require('mongoose')
+import { Schema, model } from 'mongoose'
 
-const RecordSchema = Schema({
+const CollarSchema = new Schema({
   // Variables CO2
   aid_Vaca: {
     type: String,
@@ -207,4 +207,4 @@ const RecordSchema = Schema({
   }
 })
 
-module.exports = model('Record', RecordSchema)
+export default model('Collar', CollarSchema)

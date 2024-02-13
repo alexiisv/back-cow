@@ -1,25 +1,26 @@
 {
-  "name": "vacas",
-  "version": "1.0.0",
+  "name": "cows",
+  "version": "2.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./src/index.js",
+  "type": "module",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "start": "node ./src/index.js",
+    "dev": "nodemon ./src/index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^1.6.0",
-    "cors": "^2.8.5",
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "mongoose": "^7.6.2",
-    "mqtt": "^5.1.2",
+    "axios": "1.6.0",
+    "cors": "2.8.5",
+    "dotenv": "16.3.1",
+    "express": "4.18.2",
+    "mongoose": "7.6.2",
+    "mqtt": "5.1.2",
     "socket.io": "4.7.3"
   },
   "devDependencies": {
-    "nodemon": "^3.0.1",
+    "nodemon": "3.0.1",
     "standard": "17.1.0"
   },
   "eslintConfig": {
