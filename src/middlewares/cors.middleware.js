@@ -1,11 +1,9 @@
 import cors from 'cors'
 
-const ACCEPTED_ORIGINS = [
-  process.env.FRONTEND_URL
-]
-
-export const corsMiddleware = ({ acceptedOrigins = ACCEPTED_ORIGINS } = {}) => cors({
-  origin: true
+export const corsMiddleware = () => cors({
+  origin: (_, callback) => {
+    return callback(null, true)
+  }
 })
 
 /*
