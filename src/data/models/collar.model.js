@@ -2,7 +2,7 @@ import { Schema, model } from 'mongoose'
 
 const CollarSchema = new Schema({
   // Variables CO2
-  aid_Vaca: {
+  aid_vaca: {
     type: String,
     required: [true, 'identifier is required'],
     unique: false
@@ -183,12 +183,12 @@ const CollarSchema = new Schema({
       unique: false
     }
   },
-  Batt: {
+  batt: {
     type: Number,
     required: [true, 'identifier is required'],
     unique: false
   },
-  Cont: {
+  cont: {
     type: Number,
     required: [true, 'identifier is required'],
     unique: false
