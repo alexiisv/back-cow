@@ -1,8 +1,8 @@
 export function mapCollar (data) {
   const mappedCollar = {
-    aid_Vaca: data.decoded_payload.aid_Vaca,
-    Cont: data.decoded_payload.Cont,
-    Batt: data.decoded_payload.Batt,
+    aid_vaca: data.decoded_payload.aid_Vaca,
+    cont: data.decoded_payload.Cont,
+    batt: data.decoded_payload.Batt,
     activ: data.decoded_payload.activ,
 
     temp_max: data.decoded_payload.temp_max,
