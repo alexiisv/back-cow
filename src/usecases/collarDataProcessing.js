@@ -9,8 +9,8 @@ export async function proccessCollarData (receivedTopic, message) {
     if (data?.decoded_payload) {
       const collar = mapCollar(data)
       await CollarService.createCollar(collar)
-      getIo().emit('newDataCollar', collar)
-      console.log('Datos guardados correctamente')
+      getIo().emit(`collar${collar.aid_vaca}DataUpdated`, collar)
+      console.log(`Datos guardados correctamente: ${collar.aid_vaca}`)
     }
   } catch (err) {
     console.error('Error al guardar los datos')
