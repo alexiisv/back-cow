@@ -11,10 +11,9 @@ export class CollarRepository {
     }
   }
 
-  // Falta implementar el método
-  static async getCollarByIdCow (idCow) {
+  static async lastByAid (aidCow) {
     try {
-      const collar = await Collar.find({ idCow })
+      const collar = await Collar.findOne({ aid_vaca: aidCow }).sort({ received_at: -1 })
       return collar
     } catch (err) {
       throw new Error('Error al obtener el collar')
