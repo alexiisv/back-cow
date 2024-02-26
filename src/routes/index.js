@@ -1,9 +1,7 @@
 import { Router } from 'express'
+import { collaresRoutes } from './collares.routes.js'
 
 export const Routes = Router()
 
-Routes.get('/cows', (req, res) => {
-  res.json({
-    message: 'Hello World'
-  })
-})
+Routes
+  .use('/collares', collaresRoutes)
