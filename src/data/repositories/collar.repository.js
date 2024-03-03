@@ -16,7 +16,16 @@ export class CollarRepository {
       const collar = await Collar.findOne({ aid_vaca: aidCow }).sort({ received_at: -1 })
       return collar
     } catch (err) {
-      throw new Error('Error al obtener el collar')
+      throw new Error('Error al obtener los datos')
+    }
+  }
+
+  static async currentDateToSelected (date) {
+    try {
+      const collars = await Collar.find({ received_at: { $gte: new Date(date) } })
+      return collars
+    } catch (err) {
+      throw new Error('Error al obtener los datos')
     }
   }
 }

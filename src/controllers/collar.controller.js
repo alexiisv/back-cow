@@ -11,4 +11,15 @@ export class CollarController {
       res.status(500).json({ message: error.message })
     }
   }
+
+  static async currentDateToSelected (req, res) {
+    const { date } = req.params
+
+    try {
+      const collars = await CollarRepository.currentDateToSelected(date)
+      res.status(200).json(collars)
+    } catch (error) {
+      res.status(500).json({ message: error.message })
+    }
+  }
 }
