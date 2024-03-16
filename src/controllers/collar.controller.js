@@ -1,4 +1,5 @@
 import { CollarRepository } from '../data/repositories/collar.repository.js'
+import { sendError, sendSuccess } from '../utils/response.util.js'
 
 export class CollarController {
   static async lastByAid (req, res) {
@@ -6,9 +7,9 @@ export class CollarController {
 
     try {
       const collar = await CollarRepository.lastByAid(aidCow)
-      res.status(200).json(collar)
+      return sendSuccess(res, collar)
     } catch (error) {
-      res.status(500).json({ message: error.message })
+      return sendError(res, 500, error.message)
     }
   }
 
@@ -17,9 +18,9 @@ export class CollarController {
 
     try {
       const collars = await CollarRepository.currentDateToSelected(date)
-      res.status(200).json(collars)
+      return sendSuccess(res, collars)
     } catch (error) {
-      res.status(500).json({ message: error.message })
+      return sendError(res, 500, error.message)
     }
   }
 }
