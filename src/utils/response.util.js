@@ -1,4 +1,4 @@
-export function sendError (res, code = 500, message = 'Error inesperado', details = null) {
+function sendError (res, code = 500, message = 'Error inesperado', details = null) {
   if (code === 500) {
     message = 'Error inesperado'
   }
@@ -8,6 +8,8 @@ export function sendError (res, code = 500, message = 'Error inesperado', detail
   })
 }
 
-export function sendSuccess (res, data, code = 200) {
+function sendSuccess (res, data, code = 200) {
   return res.status(code).json(data)
 }
+
+export { sendError, sendSuccess }
