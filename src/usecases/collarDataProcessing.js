@@ -1,6 +1,6 @@
 import { getIo } from '../infraestructura/websockets.js'
 import { CollarService } from '../services/collar.service.js'
-import { mapCollar } from '../utils/mapCollar.js'
+import { mapCollar } from '../utils/mapCollar.util.js'
 
 export async function proccessCollarData (receivedTopic, message) {
   const data = JSON.parse(message).uplink_message
