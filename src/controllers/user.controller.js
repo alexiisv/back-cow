@@ -20,4 +20,13 @@ export class UserController {
       return sendError(res, 500, error.message)
     }
   }
+
+  static async findByUsername (username) {
+    try {
+      const user = await UserRepository.findByUsername(username)
+      return user
+    } catch (error) {
+      throw new Error(error.message)
+    }
+  }
 }
