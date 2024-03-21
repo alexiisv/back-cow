@@ -1,5 +1,6 @@
-import { UserRepository } from '../data/repositories/user.repository.js'
 import bcrypt from 'bcrypt'
+import { UserRepository } from '../data/repositories/user.repository.js'
+import { sendError, sendSuccess } from '../utils/response.util.js'
 
 export class UserController {
   static async createUser (req, res) {
@@ -14,9 +15,18 @@ export class UserController {
         password: hashedPassword,
         roles
       })
-      res.status(201).json(user)
+      return sendSuccess(res, user, 201)
     } catch (error) {
-      res.status(500).json({ message: error.message })
+      return sendError(res, 500, error.message)
+    }
+  }
+
+  static async findByUsername (username) {
+    try {
+      const user = await UserRepository.findByUsername(username)
+      return user
+    } catch (error) {
+      throw new Error(error.message)
     }
   }
 }
