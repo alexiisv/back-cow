@@ -30,7 +30,23 @@ export class AuthController {
     }
   }
 
-  static async checkIsLogged (req, res) {
-    return sendSuccess(res, { message: 'Usuario logueado' })
+  static async reconnect (req, res) {
+    try {
+      const username = req.jwtPayload.username
+
+      const token = generateToken({
+        payload: { username },
+        expiresIn: '1h',
+        jwtSecret: process.env.JWT_SECRET
+      })
+
+      return sendSuccess(res, {
+        username,
+        message: 'Usuario logueado',
+        token
+      })
+    } catch (error) {
+      return sendError(res, 500, error.message)
+    }
   }
 }
