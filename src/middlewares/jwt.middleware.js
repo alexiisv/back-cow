@@ -4,7 +4,7 @@ import { verifyToken } from '../utils/jwt.util.js'
 export const jwtMiddleware = (req, res, next) => {
   const token = req.headers.authorization?.split(' ')[1]
   if (!token) {
-    return sendError(res, 401, 'El token ha expirado', 'El token ha expirado')
+    return sendError(res, 401, 'La sesión expiró', 'El token expiró o no existe')
   }
 
   try {
@@ -12,6 +12,6 @@ export const jwtMiddleware = (req, res, next) => {
     req.jwtPayload = payload
     next()
   } catch (error) {
-    return sendError(res, 401, 'El token ha expirado', 'El token ha expirado')
+    return sendError(res, 401, 'La sesión expiró', 'El token expiró o no existe')
   }
 }
