@@ -29,4 +29,8 @@ export class AuthController {
       return sendError(res, 500, error.message)
     }
   }
+
+  static async checkIsLogged (req, res) {
+    return sendSuccess(res, { message: 'Usuario logueado' })
+  }
 }
