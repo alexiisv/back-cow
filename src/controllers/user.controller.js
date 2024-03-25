@@ -29,4 +29,13 @@ export class UserController {
       throw new Error(error.message)
     }
   }
+
+  static async getAllUsers (req, res) {
+    try {
+      const users = await UserRepository.getAllUsers()
+      return sendSuccess(res, users)
+    } catch (error) {
+      return sendError(res, 500, error.message)
+    }
+  }
 }
