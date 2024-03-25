@@ -15,7 +15,7 @@ export class UserController {
         password: hashedPassword,
         roles
       })
-      return sendSuccess(res, user, 201)
+      return sendSuccess(res, { message: `Usuario ${user.username} registrado` }, 201)
     } catch (error) {
       return sendError(res, 500, error.message)
     }
