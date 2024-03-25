@@ -24,7 +24,13 @@ export class AuthController {
         jwtSecret: process.env.JWT_SECRET
       })
 
-      return sendSuccess(res, { token })
+      return sendSuccess(res, {
+        username: user.username,
+        role: user.role,
+        email: user.email,
+        token,
+        message: 'Usuario logueado'
+      })
     } catch (error) {
       return sendError(res, 500, error.message)
     }
@@ -34,6 +40,11 @@ export class AuthController {
     try {
       const username = req.jwtPayload.username
 
+      const user = await UserController.findByUsername(username)
+      if (!user) {
+        return sendError(res, 404, 'El usuario no existe')
+      }
+
       const token = generateToken({
         payload: { username },
         expiresIn: '1h',
@@ -41,9 +52,11 @@ export class AuthController {
       })
 
       return sendSuccess(res, {
-        username,
-        message: 'Usuario logueado',
-        token
+        username: user.username,
+        role: user.role,
+        email: user.email,
+        token,
+        message: 'Se ha reconectado el usuario'
       })
     } catch (error) {
       return sendError(res, 500, error.message)
