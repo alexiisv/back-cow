@@ -19,4 +19,13 @@ export class UserRepository {
       throw new Error('Error al obtener el usuario')
     }
   }
+
+  static async getAllUsers () {
+    try {
+      const users = await User.find({}, { password: 0 })
+      return users
+    } catch (error) {
+      throw new Error('Error al obtener los usuarios')
+    }
+  }
 }
