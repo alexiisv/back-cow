@@ -1,7 +1,4 @@
 function sendError (res, code = 500, message = 'Error inesperado', details = null) {
-  if (code === 500) {
-    message = 'Error inesperado'
-  }
   return res.status(code).json({
     message,
     details

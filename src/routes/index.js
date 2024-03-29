@@ -9,7 +9,7 @@ export const Routes = Router()
 Routes
   .use('/auth', authRoutes)
 
-// Routes.use(jwtMiddleware)
+Routes.use(jwtMiddleware)
 
 Routes
   .use('/collares', collaresRoutes)
