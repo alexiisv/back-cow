@@ -5,4 +5,7 @@ export const usersRoutes = Router()
 
 usersRoutes
   .get('/', UserController.getAllUsers)
+  .get('/:username', UserController.findByUsername)
   .post('/', UserController.createUser)
+  .put('/:username', UserController.updateUser)
+  .delete('/:username', UserController.deleteUser)
