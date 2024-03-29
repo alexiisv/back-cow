@@ -7,6 +7,11 @@ export class UserController {
     const { username, email, password, roles } = req.body
 
     try {
+      const userExists = await UserRepository.findByUsername(username)
+      if (userExists) {
+        return sendError(res, 400, 'El usuario ya existe')
+      }
+
       const hashedPassword = await bcrypt.hash(password, 10)
 
       const user = await UserRepository.createUser({
@@ -21,19 +26,54 @@ export class UserController {
     }
   }
 
-  static async findByUsername (username) {
+  static async findByUsername (req, res) {
+    const { username } = req.params
+
     try {
       const user = await UserRepository.findByUsername(username)
-      return user
+      return sendSuccess(res, user)
     } catch (error) {
-      throw new Error(error.message)
+      return sendError(res, 500, error.message)
     }
   }
 
-  static async getAllUsers (req, res) {
+  static async getAllUsers (_, res) {
     try {
       const users = await UserRepository.getAllUsers()
       return sendSuccess(res, users)
+    } catch (error) {
+      return sendError(res, 500, error.message)
+    }
+  }
+
+  static async updateUser (req, res) {
+    const { username } = req.params
+    const { email, roles } = req.body
+
+    try {
+      const user = await UserRepository.findByUsername(username)
+      if (!user) {
+        return sendError(res, 404, 'El usuario no existe')
+      }
+
+      const updatedUser = await UserRepository.updateUser(username, { email, roles })
+      return sendSuccess(res, updatedUser)
+    } catch (error) {
+      return sendError(res, 500, error.message)
+    }
+  }
+
+  static async deleteUser (req, res) {
+    const { username } = req.params
+
+    try {
+      const user = await UserRepository.findByUsername(username)
+      if (!user) {
+        return sendError(res, 404, 'El usuario no existe')
+      }
+
+      await UserRepository.deleteUser(username)
+      return sendSuccess(res, { message: 'Usuario eliminado' })
     } catch (error) {
       return sendError(res, 500, error.message)
     }
