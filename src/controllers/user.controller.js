@@ -4,7 +4,7 @@ import { sendError, sendSuccess } from '../utils/response.util.js'
 
 export class UserController {
   static async createUser (req, res) {
-    const { username, email, password, roles } = req.body
+    const { username, email, password, role } = req.body
 
     try {
       const userExists = await UserRepository.findByUsername(username)
@@ -18,7 +18,7 @@ export class UserController {
         username,
         email,
         password: hashedPassword,
-        roles
+        role
       })
       return sendSuccess(res, { message: `Usuario ${user.username} registrado` }, 201)
     } catch (error) {
