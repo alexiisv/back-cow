@@ -28,4 +28,23 @@ export class UserRepository {
       throw new Error('Error al obtener los usuarios')
     }
   }
+
+  static async updateUser (username, userData) {
+    try {
+      const updatedUser = await User.findOneAndUpdate({
+        username
+      }, userData, { new: true })
+      return updatedUser
+    } catch (error) {
+      throw new Error('Error al actualizar el usuario')
+    }
+  }
+
+  static async deleteUser (username) {
+    try {
+      await User.findOneAndDelete({ username })
+    } catch (error) {
+      throw new Error('Error al eliminar el usuario')
+    }
+  }
 }
