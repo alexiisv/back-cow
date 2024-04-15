@@ -13,7 +13,7 @@ export function mapCollar (data) {
 
     temp_nicla: data.decoded_payload.temp_nicla,
     hum_scd: data.decoded_payload.hum_scd,
-    hum_nicla: data.decoded_payload.temp_nicla,
+    hum_nicla: data.decoded_payload.hum_nicla,
     presion: data.decoded_payload.presion,
 
     c02_scd: data.decoded_payload.Co2_scd,
