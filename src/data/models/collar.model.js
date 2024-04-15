@@ -151,11 +151,6 @@ const CollarSchema = new Schema({
     required: [true, 'identifier is required'],
     unique: false
   },
-  iaq_estat: {
-    type: Number,
-    required: [true, 'identifier is required'],
-    unique: false
-  },
   compu_org_volat: {
     type: Number,
     required: [true, 'identifier is required'],
