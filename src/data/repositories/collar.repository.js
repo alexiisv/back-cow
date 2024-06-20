@@ -28,4 +28,21 @@ export class CollarRepository {
       throw new Error('Error al obtener los datos')
     }
   }
+
+  static async lastThirtyDays (aidCow, prop) {
+    try {
+      const fieldsToSelect = ['_id', 'received_at', 'aid_vaca', prop]
+
+      const collars = await Collar.find({
+        aid_vaca: aidCow,
+        received_at: { $gte: new Date(new Date().setDate(new Date().getDate() - 30)) }
+      })
+        .select(fieldsToSelect.join(' '))
+        .lean()
+
+      return collars
+    } catch (err) {
+      throw new Error('Error al obtener los datos')
+    }
+  }
 }
