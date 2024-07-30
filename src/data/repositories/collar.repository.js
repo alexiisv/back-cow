@@ -1,3 +1,4 @@
+import { NoResultsError } from '../../utils/customErrors.js'
 import Collar from '../models/collar.model.js'
 
 export class CollarRepository {
@@ -17,6 +18,38 @@ export class CollarRepository {
       return collar
     } catch (err) {
       throw new Error('Error al obtener los datos')
+    }
+  }
+
+  static async getForLastHours (aidCow, hours, prop) {
+    const fieldsToSelect = ['_id', 'received_at', 'aid_vaca', prop]
+
+    try {
+      const hoursAgo = parseInt(hours)
+      if (isNaN(hoursAgo)) {
+        throw new Error('El parámetro "hours" debe ser un número válido')
+      }
+
+      const cutoffDate = new Date(Date.now() - hoursAgo * 60 * 60 * 1000)
+
+      const collars = await Collar.find({
+        aid_vaca: aidCow,
+        received_at: { $gte: cutoffDate }
+      })
+        .select(fieldsToSelect.join(' '))
+        .lean()
+
+      if (collars.length === 0) {
+        throw new NoResultsError('No results were found for the specified range.')
+      }
+
+      return collars
+    } catch (err) {
+      if (err instanceof NoResultsError) {
+        throw err
+      } else {
+        throw new Error('Error retrieving the data.')
+      }
     }
   }
 

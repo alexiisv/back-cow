@@ -2,6 +2,9 @@ import { CollarRepository } from '../data/repositories/collar.repository.js'
 import { sendError, sendSuccess } from '../utils/response.util.js'
 import _ from 'lodash'
 import { props } from '../data/maps/props.js'
+import { groupByDate } from '../utils/groupByDate.js'
+import { calculateAverageData } from '../utils/calculateAverageData.js'
+import { NoResultsError } from '../utils/customErrors.js'
 
 export class CollarController {
   static async lastByAid (req, res) {
@@ -22,6 +25,24 @@ export class CollarController {
       const collars = await CollarRepository.currentDateToSelected(date)
       return sendSuccess(res, collars)
     } catch (error) {
+      return sendError(res, 500, error.message)
+    }
+  }
+
+  static async getForLastHours (req, res) {
+    const { aidCow, hours, prop } = req.query
+
+    try {
+      const collars = await CollarRepository.getForLastHours(aidCow, hours, prop)
+      const groupCollars = groupByDate(collars)
+      const result = calculateAverageData(groupCollars, prop)
+
+      return sendSuccess(res, result)
+    } catch (error) {
+      if (error instanceof NoResultsError) {
+        return sendError(res, 404, error.message)
+      }
+
       return sendError(res, 500, error.message)
     }
   }
