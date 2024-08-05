@@ -48,7 +48,7 @@ export class UserController {
 
   static async updateUser (req, res) {
     const { username } = req.params
-    const { email, roles } = req.body
+    const { email, role } = req.body
 
     try {
       const user = await UserRepository.findByUsername(username)
@@ -56,7 +56,7 @@ export class UserController {
         return sendError(res, 404, 'El usuario no existe')
       }
 
-      const updatedUser = await UserRepository.updateUser(username, { email, roles })
+      const updatedUser = await UserRepository.updateUser(username, { email, role })
       return sendSuccess(res, updatedUser)
     } catch (error) {
       return sendError(res, 500, error.message)
